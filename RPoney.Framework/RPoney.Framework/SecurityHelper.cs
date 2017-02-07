@@ -1,5 +1,4 @@
-﻿using System.Security.Cryptography;
-using RPoney.Security;
+﻿using RPoney.Security;
 using RPoney.Security.Imp;
 
 namespace RPoney
