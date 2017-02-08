@@ -42,12 +42,24 @@
   <ItemGroup>
     <Compile Include="Appenders\ILogClient.cs" />
     <Compile Include="Appenders\LogModel.cs" />
+    <Compile Include="ContextManager.cs" />
+    <Compile Include="ILogger.cs" />
+    <Compile Include="ILoggerFactory.cs" />
+    <Compile Include="Imp\Log4netFactory.cs" />
+    <Compile Include="Imp\Logger4netLogger.cs" />
+    <Compile Include="Imp\TopLogger.cs" />
+    <Compile Include="ITopLogger.cs" />
+    <Compile Include="LoggerFactory.cs" />
+    <Compile Include="LoggerFactoryManager.cs" />
+    <Compile Include="LoggerManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Threading\Imp\CallContextStorage.cs" />
     <Compile Include="Threading\Imp\HttpContextStorage.cs" />
     <Compile Include="Threading\Imp\ThreadStaticStorage.cs" />
     <Compile Include="Threading\IThreadStorage.cs" />
     <Compile Include="Threading\LogicalThreadContext.cs" />
+    <Compile Include="TopContext.cs" />
+    <Compile Include="TopLogMessage.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\RPoney.Framework\RPoney.Framework\RPoney.Framework.csproj">
