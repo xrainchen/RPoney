@@ -10,9 +10,9 @@ namespace RPoney.Log.Appenders.Redis
     internal class RedisClient : ILogClient
     {
         // Fields
-        private PooledRedisClientManager clientManager;
-        private Config Config;
-        private readonly string configFile = AppDomain.CurrentDomain.BaseDirectory + @"\Config\FzCyjhRedisLog.Config";// @"D:\Configs\Log\FzCyjhRedisLog.config";
+        private PooledRedisClientManager _clientManager;
+        private Config _config;
+        private readonly string _configFile = AppDomain.CurrentDomain.BaseDirectory + @"\_config\RPoneyRedisLog._config";// @"D:\Configs\Log\FzCyjhRedisLog.config";
         private const string ListId = "logstash";
         // Methods
         public RedisClient()
@@ -24,7 +24,7 @@ namespace RPoney.Log.Appenders.Redis
         {
             if (value != null)
             {
-                using (var client = clientManager.GetClient())
+                using (var client = _clientManager.GetClient())
                 {
                     client.EnqueueItemOnList(ListId, value.SerializeToJSON());
                 }
@@ -38,9 +38,9 @@ namespace RPoney.Log.Appenders.Redis
 
         public LogModel GetLogModel()
         {
-            using (var client = clientManager.GetClient())
+            using (var client = _clientManager.GetClient())
             {
-                string str = client.DequeueItemFromList(ListId);
+                var str = client.DequeueItemFromList(ListId);
                 if (string.IsNullOrEmpty(str))
                 {
                     return null;
@@ -54,7 +54,7 @@ namespace RPoney.Log.Appenders.Redis
             FileStream stream = null;
             try
             {
-                stream = new FileStream(configFile, FileMode.Open, FileAccess.Read);
+                stream = new FileStream(_configFile, FileMode.Open, FileAccess.Read);
                 Config config = new XmlSerializer(typeof(Config)).Deserialize(stream) as Config;
                 if (config == null)
                 {
@@ -79,7 +79,7 @@ namespace RPoney.Log.Appenders.Redis
 
         private void Init(Config config)
         {
-            Config = config;
+            _config = config;
             var separator = new char[] { ',' };
             var readWriteHosts = config.GetParamValue("WriteServer").Split(separator);
             var chArray2 = new char[] { ',' };
@@ -105,9 +105,9 @@ namespace RPoney.Log.Appenders.Redis
             {
                 config2.MaxWritePoolSize = int.Parse(str4);
             }
-            clientManager = new PooledRedisClientManager(readWriteHosts, readOnlyHosts, config2);
+            _clientManager = new PooledRedisClientManager(readWriteHosts, readOnlyHosts, config2);
         }
-        public string ESUrl => Config.ESUrl;
+        public string EsUrl => _config.EsUrl;
     }
 
 

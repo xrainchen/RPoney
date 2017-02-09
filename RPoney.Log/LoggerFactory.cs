@@ -7,10 +7,8 @@ namespace RPoney.Log
     /// </summary>
     internal class LoggerFactory
     {
-        // Fields
-        private static LoggerFactory _Instance = new LoggerFactory();
         private static ILoggerFactory _LoggerFactory = new Log4netFactory();
-
+        public LoggerFactory() { }
         // Methods
         public void ChangeAppender(string loggerName, string appenderName)
         {
@@ -33,7 +31,7 @@ namespace RPoney.Log
         }
 
         // Properties
-        public static LoggerFactory Instance => _Instance;
+        public static LoggerFactory Instance => new LoggerFactory();
     }
 
 

@@ -122,8 +122,8 @@ namespace RPoney.Log
         {
             try
             {
-                ILogger logger = LoggerFactory.Instance.GetLogger(loggerName);
-                TopLogMessage msg = new TopLogMessage(bizType, description);
+                var logger = LoggerFactory.Instance.GetLogger(loggerName);
+                var msg = new TopLogMessage(bizType, description);
                 if (type != null)
                 {
                     msg.ClassName = type.FullName;

@@ -17,7 +17,7 @@ namespace RPoney.Log.Imp
     {
         // Fields
         private static Dictionary<string, IAppender> _AppenderList = new Dictionary<string, IAppender>();
-        private static Dictionary<string, ILogger> _Log4netLogList = new Dictionary<string, ILogger>();
+        private static Dictionary<string, log4net.Core.ILogger> _Log4netLogList = new Dictionary<string, log4net.Core.ILogger>();
         private static Dictionary<string, ILogger> _LogList = new Dictionary<string, ILogger>();
 
         // Methods
@@ -28,7 +28,7 @@ namespace RPoney.Log.Imp
         public Log4netFactory(string configPath)
         {
             XmlConfigurator.ConfigureAndWatch(new FileInfo(configPath));
-            this.InitLog4net();
+            InitLog4net();
         }
 
         public void ChangeAppender(string loggerName, string appenderName)
@@ -45,8 +45,8 @@ namespace RPoney.Log.Imp
         public void ChangeConfig(string xml)
         {
             XmlConfigurator.Configure(new MemoryStream(Encoding.Default.GetBytes(xml)));
-            this.Clear();
-            this.InitLog4net();
+            Clear();
+            InitLog4net();
         }
 
         public void ChangeLevel(string loggerName, string levelName)
@@ -80,7 +80,7 @@ namespace RPoney.Log.Imp
             for (int i = 0; i < allRepositories.Length; i++)
             {
                 var hierarchy = (Hierarchy)allRepositories[i];
-                foreach (ILogger logger in hierarchy.GetCurrentLoggers())
+                foreach (var logger in hierarchy.GetCurrentLoggers())
                 {
                     string level = (((Logger)logger).Level == null) ? string.Empty : ((Logger)logger).Level.ToString();
                     _LogList.Add(logger.Name, new Log4netLogger(logger.Name, level));
@@ -95,8 +95,6 @@ namespace RPoney.Log.Imp
                 }
             }
         }
-
-        // Properties
         public Dictionary<string, ILogger> LoggerList => _LogList;
     }
 

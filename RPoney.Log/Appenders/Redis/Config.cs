@@ -15,7 +15,7 @@ namespace RPoney.Log.Appenders.Redis
 
         public string GetParamValue(string key) => (from p in this.Params where p.Key == key select p.Value).FirstOrDefault();
 
-        public string ESUrl { get; set; }
+        public string EsUrl { get; set; }
 
         public List<Param> Params { get; set; }
 
@@ -23,9 +23,9 @@ namespace RPoney.Log.Appenders.Redis
 
         // Nested Types
         [Serializable, CompilerGenerated]
-        private sealed class ConfigInfo
+        private sealed class NestedConfig
         {
-            public static readonly Config.ConfigInfo Info=new ConfigInfo();
+            public static readonly NestedConfig Info=new NestedConfig();
             public static Func<Param, string> DicInfo;
             public string GetParamValue(Param param)
             {
