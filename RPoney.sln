@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RPoney.Framework", "RPoney.Framework\RPoney.Framework\RPoney.Framework.csproj", "{C1971D24-59A8-4AD6-9DD3-CD5AE4FE656E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RPoney.Log", "RPoney.Log\RPoney.Log.csproj", "{7AFC5F46-7737-403B-B10C-C035DE4A189F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C1971D24-59A8-4AD6-9DD3-CD5AE4FE656E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C1971D24-59A8-4AD6-9DD3-CD5AE4FE656E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C1971D24-59A8-4AD6-9DD3-CD5AE4FE656E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C1971D24-59A8-4AD6-9DD3-CD5AE4FE656E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7AFC5F46-7737-403B-B10C-C035DE4A189F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7AFC5F46-7737-403B-B10C-C035DE4A189F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7AFC5F46-7737-403B-B10C-C035DE4A189F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7AFC5F46-7737-403B-B10C-C035DE4A189F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
