@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RPoney.Framework", "RPoney.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RPoney.Log", "RPoney.Log\RPoney.Log.csproj", "{7AFC5F46-7737-403B-B10C-C035DE4A189F}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{24033A5D-76A8-4F16-840E-02D82133701B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RPoney.Log.Test", "RPoney.Log.Test\RPoney.Log.Test.csproj", "{B418BCCC-4761-4D7D-852D-BA899646FB7E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,8 +25,15 @@ Global
 		{7AFC5F46-7737-403B-B10C-C035DE4A189F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7AFC5F46-7737-403B-B10C-C035DE4A189F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7AFC5F46-7737-403B-B10C-C035DE4A189F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B418BCCC-4761-4D7D-852D-BA899646FB7E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B418BCCC-4761-4D7D-852D-BA899646FB7E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B418BCCC-4761-4D7D-852D-BA899646FB7E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B418BCCC-4761-4D7D-852D-BA899646FB7E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{B418BCCC-4761-4D7D-852D-BA899646FB7E} = {24033A5D-76A8-4F16-840E-02D82133701B}
 	EndGlobalSection
 EndGlobal

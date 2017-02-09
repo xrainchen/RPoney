@@ -4,15 +4,17 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{7AFC5F46-7737-403B-B10C-C035DE4A189F}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <ProjectGuid>{B418BCCC-4761-4D7D-852D-BA899646FB7E}</ProjectGuid>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>RPoney.Log</RootNamespace>
-    <AssemblyName>RPoney.Log</AssemblyName>
+    <RootNamespace>RPoney.Log.Test</RootNamespace>
+    <AssemblyName>RPoney.Log.Test</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -20,68 +22,60 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="log4net, Version=2.0.7.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
-      <HintPath>..\packages\log4net.2.0.7\lib\net45-full\log4net.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="ServiceStack.Common">
+    <Reference Include="ServiceStack.Common, Version=3.9.60.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\lib\ServiceStack.Common.dll</HintPath>
     </Reference>
-    <Reference Include="ServiceStack.Interfaces">
+    <Reference Include="ServiceStack.Interfaces, Version=3.9.60.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\lib\ServiceStack.Interfaces.dll</HintPath>
     </Reference>
-    <Reference Include="ServiceStack.Redis">
+    <Reference Include="ServiceStack.Redis, Version=3.9.60.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\lib\ServiceStack.Redis.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Appenders\ILogClient.cs" />
-    <Compile Include="Appenders\LogModel.cs" />
-    <Compile Include="Appenders\Redis\Config.cs" />
-    <Compile Include="Appenders\Redis\Param.cs" />
-    <Compile Include="Appenders\Redis\RedisAppender.cs" />
-    <Compile Include="Appenders\Redis\RedisClient.cs" />
-    <Compile Include="ContextManager.cs" />
-    <Compile Include="ILogger.cs" />
-    <Compile Include="ILoggerFactory.cs" />
-    <Compile Include="Imp\Log4netFactory.cs" />
-    <Compile Include="Imp\Logger4netLogger.cs" />
-    <Compile Include="Imp\TopLogger.cs" />
-    <Compile Include="ITopLogger.cs" />
-    <Compile Include="LoggerFactory.cs" />
-    <Compile Include="LoggerFactoryManager.cs" />
-    <Compile Include="LoggerManager.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Threading\Imp\CallContextStorage.cs" />
-    <Compile Include="Threading\Imp\HttpContextStorage.cs" />
-    <Compile Include="Threading\Imp\ThreadStaticStorage.cs" />
-    <Compile Include="Threading\IThreadStorage.cs" />
-    <Compile Include="Threading\LogicalThreadContext.cs" />
-    <Compile Include="TopContext.cs" />
-    <Compile Include="TopLogMessage.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\RPoney.Framework\RPoney.Framework\RPoney.Framework.csproj">
       <Project>{c1971d24-59a8-4ad6-9dd3-cd5ae4fe656e}</Project>
       <Name>RPoney.Framework</Name>
     </ProjectReference>
+    <ProjectReference Include="..\RPoney.Log\RPoney.Log.csproj">
+      <Project>{7afc5f46-7737-403b-b10c-c035de4a189f}</Project>
+      <Name>RPoney.Log</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <None Include="app.config" />
+    <None Include="config\RPoneyRedisLog.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="config\log4net.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
