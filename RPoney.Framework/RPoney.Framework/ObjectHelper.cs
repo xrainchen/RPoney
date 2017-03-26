@@ -377,6 +377,31 @@ namespace RPoney
             }
             return str;
         }
+
+        /// <summary>        
+        /// 时间戳转为C#格式时间  精度秒 
+        /// </summary>        
+        /// <param name="timeStamp"></param>
+        /// <param name="startTime"></param>
+        /// <returns></returns>        
+        public static DateTime CStampToDateTime(this object timeStamp, DateTime? startTime = null)
+        {
+            var dtStart = TimeZone.CurrentTimeZone.ToLocalTime(startTime ?? new DateTime(1970, 1, 1));
+            return dtStart.Add(new TimeSpan(timeStamp.CLong(0,true) * 10000000));
+        }
+
+        /// <summary>  
+        /// 将c# DateTime时间格式转换为Unix时间戳格式   精度秒
+        /// </summary>  
+        /// <param name="time">时间</param>
+        /// <param name="startTime"></param>
+        /// <returns>long</returns>  
+        public static long CDateTimeToStamp(this DateTime time, DateTime? startTime = null)
+        {
+            var dtStart = TimeZone.CurrentTimeZone.ToLocalTime(startTime ?? new DateTime(1970, 1, 1));
+            var t = (time.Ticks - dtStart.Ticks) / 10000000;
+            return t;
+        }
     }
 
 }
