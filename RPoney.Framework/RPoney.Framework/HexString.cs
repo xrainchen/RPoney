@@ -14,11 +14,11 @@ namespace RPoney
         /// <summary>
         /// 获取16进制字符串的字节数组
         /// </summary>
-        /// <param name="str">16进制字符串</param>
+        /// <param name="hexText">16进制字符串</param>
         /// <returns>字节数组</returns>
-        public static byte[] GetBytes(string str)
+        public static byte[] GetBytes(this string hexText)
         {
-            char[] chArray = str.ToCharArray();
+            char[] chArray = hexText.ToCharArray();
             byte[] buffer = new byte[chArray.Length / 2];
             int index = 0;
             int length = buffer.Length;

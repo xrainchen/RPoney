@@ -10,20 +10,6 @@
         /// </summary>
         /// <param name="securityService"></param>
         /// <returns></returns>
-        ISecurityService CreateSecurityService(SecurityServiceEnum securityService);
-    }
-    /// <summary>
-    /// 安全服务类型
-    /// </summary>
-    public enum SecurityServiceEnum
-    {
-        /// <summary>
-        /// MD5算法
-        /// </summary>
-        MD5 = 1,
-        /// <summary>
-        /// SHA1算法
-        /// </summary>
-        SHA1 = 2
+        ISecurityService CreateSecurityService(PublicEnum.SecurityServiceEnum securityService);
     }
 }

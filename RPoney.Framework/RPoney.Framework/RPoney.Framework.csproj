@@ -36,10 +36,15 @@
     <Reference Include="System.Web.Extensions" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Encrypt\IEncryptService.cs" />
+    <Compile Include="Encrypt\IEncryptServiceFactory.cs" />
+    <Compile Include="Encrypt\Imp\DesEncryptService.cs" />
+    <Compile Include="Encrypt\Imp\EncryptServiceFactory.cs" />
     <Compile Include="HexString.cs" />
     <Compile Include="NameValueCollectionExtend.cs" />
     <Compile Include="ObjectHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PublicEnum.cs" />
     <Compile Include="SecurityHelper.cs" />
     <Compile Include="Security\Imp\Md5SecurityService.cs" />
     <Compile Include="Security\Imp\SecurityServiceFactory.cs" />

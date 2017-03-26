@@ -23,7 +23,7 @@ namespace RPoney
         /// <returns>MD5加密的哈希字节数组</returns>
         public static byte[] EncryMd5Bytes(this byte[] input)
         {
-            return _securityServiceFactory.CreateSecurityService(SecurityServiceEnum.MD5).EncryToBytes(input);
+            return _securityServiceFactory.CreateSecurityService(PublicEnum.SecurityServiceEnum.MD5).EncryToBytes(input);
         }
         /// <summary>
         /// 加密成MD5哈希字节数组
@@ -50,7 +50,7 @@ namespace RPoney
         /// <returns>SHA1加密的哈希字节数组</returns>
         public static byte[] EncrySha1Bytes(this byte[] input)
         {
-            return _securityServiceFactory.CreateSecurityService(SecurityServiceEnum.SHA1).EncryToBytes(input);
+            return _securityServiceFactory.CreateSecurityService(PublicEnum.SecurityServiceEnum.SHA1).EncryToBytes(input);
         }
         /// <summary>
         /// 加密成SHA1哈希字节数组
