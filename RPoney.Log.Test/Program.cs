@@ -6,11 +6,11 @@ namespace RPoney.Log.Test
     {
         static void Main(string[] args)
         {
-            RPoney.Log.LoggerManager.Debug("Program", "Debug");
-            RPoney.Log.LoggerManager.Info("Program", "Info");
-            RPoney.Log.LoggerManager.Warn("Program", "Warn");
-            RPoney.Log.LoggerManager.Error("Program", "Error");
-            RPoney.Log.LoggerManager.Fatal("Program", "Fatal");
+            RPoney.Log.LoggerManager.Debug("Program", "Debug1");
+            RPoney.Log.LoggerManager.Info("Program", "Info1");
+            RPoney.Log.LoggerManager.Warn("Program", "Warn1");
+            RPoney.Log.LoggerManager.Error("Program", "Error1");
+            RPoney.Log.LoggerManager.Fatal("Program", "Fatal1");
             Console.Read();
         }
     }

@@ -1,4 +1,6 @@
-﻿namespace RPoney.Log
+﻿using System;
+
+namespace RPoney.Log
 {
     internal class TopLogMessage
     {
@@ -30,6 +32,11 @@
         public string EventNo { get; set; }
 
         public TopContext TopContext { get; set; }
+
+        public override string ToString()
+        {
+            return this.SerializeToJSON();
+        }
     }
 
 

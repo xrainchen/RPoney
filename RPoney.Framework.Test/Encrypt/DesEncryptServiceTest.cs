@@ -16,7 +16,7 @@ namespace RPoney.Framework.Test.Encrypt
             try
             {
                 var desEncryptService = new DesEncryptService();
-                var sourceText = Encoding.UTF8.GetBytes("rain").GetHexString();
+                var sourceText = Encoding.UTF8.GetBytes("wxf1e4f9f901ad4021").GetHexString();
                 var key = EncryptKeyToDecryptKeyBytes("!@#$%");
                 var encryptText = desEncryptService.Encrypt(sourceText.GetBytes(), key);
                 var decriptText = desEncryptService.Decrypt(encryptText, key);
