@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RPoney.Framework.Test", "RP
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RPoney.Data.PriClient", "RPoney.Data.PriClient\RPoney.Data.PriClient.csproj", "{13570FCA-6F26-4C87-BF5D-841D7EACFEEF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rponey.EncryptTools", "Rponey.EncryptTools\Rponey.EncryptTools.csproj", "{FFFB6497-D48D-4471-A453-61B3944BD408}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -47,6 +49,10 @@ Global
 		{13570FCA-6F26-4C87-BF5D-841D7EACFEEF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{13570FCA-6F26-4C87-BF5D-841D7EACFEEF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{13570FCA-6F26-4C87-BF5D-841D7EACFEEF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FFFB6497-D48D-4471-A453-61B3944BD408}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FFFB6497-D48D-4471-A453-61B3944BD408}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FFFB6497-D48D-4471-A453-61B3944BD408}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FFFB6497-D48D-4471-A453-61B3944BD408}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
