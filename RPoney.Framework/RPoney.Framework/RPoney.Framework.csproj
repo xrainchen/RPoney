@@ -36,6 +36,7 @@
     <Reference Include="System.Web.Extensions" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DesEncryptHelper.cs" />
     <Compile Include="Encrypt\IEncryptService.cs" />
     <Compile Include="Encrypt\IEncryptServiceFactory.cs" />
     <Compile Include="Encrypt\Imp\DesEncryptService.cs" />
