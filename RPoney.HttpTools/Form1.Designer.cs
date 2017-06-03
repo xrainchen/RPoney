@@ -36,11 +36,11 @@
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.cbContentType = new System.Windows.Forms.ComboBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.cbCharset = new System.Windows.Forms.ComboBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.txtRequestData = new System.Windows.Forms.TextBox();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.txtReponstData = new System.Windows.Forms.TextBox();
-            this.cbCharset = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -131,6 +131,18 @@
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Charset";
             // 
+            // cbCharset
+            // 
+            this.cbCharset.FormattingEnabled = true;
+            this.cbCharset.Items.AddRange(new object[] {
+            "UTF-8",
+            "GB2312",
+            "GBK"});
+            this.cbCharset.Location = new System.Drawing.Point(6, 19);
+            this.cbCharset.Name = "cbCharset";
+            this.cbCharset.Size = new System.Drawing.Size(143, 20);
+            this.cbCharset.TabIndex = 7;
+            // 
             // groupBox5
             // 
             this.groupBox5.Controls.Add(this.txtRequestData);
@@ -169,18 +181,6 @@
             this.txtReponstData.Size = new System.Drawing.Size(713, 179);
             this.txtReponstData.TabIndex = 0;
             // 
-            // cbCharset
-            // 
-            this.cbCharset.FormattingEnabled = true;
-            this.cbCharset.Items.AddRange(new object[] {
-            "UTF-8",
-            "GB2312",
-            "GBK"});
-            this.cbCharset.Location = new System.Drawing.Point(6, 19);
-            this.cbCharset.Name = "cbCharset";
-            this.cbCharset.Size = new System.Drawing.Size(143, 20);
-            this.cbCharset.TabIndex = 7;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -194,7 +194,7 @@
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "模拟请求";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
