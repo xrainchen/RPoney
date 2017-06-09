@@ -1,8 +1,6 @@
 ﻿using System;
-using System.IO;
-using System.Text;
 using System.Windows.Forms;
-using RPoney.Utilty.Http;
+using RPoney.HttpTools.Model;
 
 namespace RPoney.HttpTools
 {
@@ -17,27 +15,37 @@ namespace RPoney.HttpTools
         {
             try
             {
-                var requestUrl = txtRequestUrl.Text;
-                var reqeustMethod = cbRequestMethod.Text;
-                var encoding = Encoding.GetEncoding(cbCharset.Text);
-                switch (reqeustMethod.ToLower())
+                var requestModel = new RequestHeaderModel()
                 {
-                    case "get":
-                        txtReponstData.Text = RequestHelper.HttpGet(requestUrl, null, encoding);
-                        break;
-                    case "post":
-                        var contentType = cbContentType.Text;
-                        var requestData = txtRequestData.Text;
-                        var stream = new MemoryStream();
-                        var formDataBytes = string.IsNullOrWhiteSpace(requestData) ? new byte[0] : encoding.GetBytes(requestData);
-                        stream.Write(formDataBytes, 0, formDataBytes.Length);
-                        stream.Seek(0, SeekOrigin.Begin);
-                        txtReponstData.Text = RequestHelper.HttpPost(requestUrl, contentType, null, stream, null, null, encoding);
-                        break;
-                    default:
-                        txtRequestData.Text = txtReponstData.Text = string.Empty;
-                        break;
-                }
+                    Url = txtRequestUrl.Text,
+                    Method = cbRequestMethod.Text,
+                    Charset = cbCharset.Text,
+                    UserAgent = cbUserAgent.Text,
+                    Param = txtRequestData.Text,
+                    ContentType = cbContentType.Text
+                };
+                txtReponstData.Text= new HttpService().GetResult(requestModel);
+                //var requestUrl = txtRequestUrl.Text;
+                //var reqeustMethod = cbRequestMethod.Text;
+                //var encoding = Encoding.GetEncoding(cbCharset.Text);
+                //switch (reqeustMethod.ToLower())
+                //{
+                //    case "get":
+                //        txtReponstData.Text = RequestHelper.HttpGet(requestUrl, null, encoding);
+                //        break;
+                //    case "post":
+                //        var contentType = cbContentType.Text;
+                //        var requestData = txtRequestData.Text;
+                //        var stream = new MemoryStream();
+                //        var formDataBytes = string.IsNullOrWhiteSpace(requestData) ? new byte[0] : encoding.GetBytes(requestData);
+                //        stream.Write(formDataBytes, 0, formDataBytes.Length);
+                //        stream.Seek(0, SeekOrigin.Begin);
+                //        txtReponstData.Text = RequestHelper.HttpPost(requestUrl, contentType, null, stream, null, null, encoding);
+                //        break;
+                //    default:
+                //        txtRequestData.Text = txtReponstData.Text = string.Empty;
+                //        break;
+                //}
             }
             catch (Exception ex)
             {
@@ -50,6 +58,7 @@ namespace RPoney.HttpTools
             cbRequestMethod.SelectedIndex = 0;
             cbContentType.SelectedIndex = 0;
             cbCharset.SelectedIndex = 0;
+            cbUserAgent.SelectedIndex = 0;
         }
     }
 }

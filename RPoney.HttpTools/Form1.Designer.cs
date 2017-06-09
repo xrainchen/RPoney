@@ -41,12 +41,15 @@
             this.txtRequestData = new System.Windows.Forms.TextBox();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.txtReponstData = new System.Windows.Forms.TextBox();
+            this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.cbUserAgent = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox5.SuspendLayout();
             this.groupBox6.SuspendLayout();
+            this.groupBox7.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -181,11 +184,34 @@
             this.txtReponstData.Size = new System.Drawing.Size(713, 179);
             this.txtReponstData.TabIndex = 0;
             // 
+            // groupBox7
+            // 
+            this.groupBox7.Controls.Add(this.cbUserAgent);
+            this.groupBox7.Location = new System.Drawing.Point(501, 66);
+            this.groupBox7.Name = "groupBox7";
+            this.groupBox7.Size = new System.Drawing.Size(186, 45);
+            this.groupBox7.TabIndex = 7;
+            this.groupBox7.TabStop = false;
+            this.groupBox7.Text = "UserAgent";
+            // 
+            // cbUserAgent
+            // 
+            this.cbUserAgent.FormattingEnabled = true;
+            this.cbUserAgent.Items.AddRange(new object[] {
+            "Windows",
+            "Android",
+            "Ios"});
+            this.cbUserAgent.Location = new System.Drawing.Point(16, 19);
+            this.cbUserAgent.Name = "cbUserAgent";
+            this.cbUserAgent.Size = new System.Drawing.Size(154, 20);
+            this.cbUserAgent.TabIndex = 0;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(757, 454);
+            this.Controls.Add(this.groupBox7);
             this.Controls.Add(this.groupBox6);
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.groupBox4);
@@ -205,6 +231,7 @@
             this.groupBox5.PerformLayout();
             this.groupBox6.ResumeLayout(false);
             this.groupBox6.PerformLayout();
+            this.groupBox7.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -224,6 +251,8 @@
         private System.Windows.Forms.GroupBox groupBox6;
         private System.Windows.Forms.TextBox txtReponstData;
         private System.Windows.Forms.ComboBox cbCharset;
+        private System.Windows.Forms.GroupBox groupBox7;
+        private System.Windows.Forms.ComboBox cbUserAgent;
     }
 }
 
