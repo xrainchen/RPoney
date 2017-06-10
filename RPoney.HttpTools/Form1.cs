@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Windows.Forms;
 using RPoney.HttpTools.Model;
 
@@ -24,7 +25,7 @@ namespace RPoney.HttpTools
                     Param = txtRequestData.Text,
                     ContentType = cbContentType.Text
                 };
-                txtReponstData.Text= new HttpService().GetResult(requestModel);
+                txtReponstData.Text = new HttpService().GetResult(requestModel);
                 //var requestUrl = txtRequestUrl.Text;
                 //var reqeustMethod = cbRequestMethod.Text;
                 //var encoding = Encoding.GetEncoding(cbCharset.Text);
@@ -59,6 +60,19 @@ namespace RPoney.HttpTools
             cbContentType.SelectedIndex = 0;
             cbCharset.SelectedIndex = 0;
             cbUserAgent.SelectedIndex = 0;
+        }
+
+        private void btnSltFile_Click(object sender, EventArgs e)
+        {
+            var fileDialog = new OpenFileDialog()
+            {
+                Multiselect = true
+            };
+            if (fileDialog.ShowDialog() != DialogResult.OK) return;
+            foreach (var file in fileDialog.FileNames)
+            {
+                txtFile.Text += file + Environment.NewLine;
+            }
         }
     }
 }

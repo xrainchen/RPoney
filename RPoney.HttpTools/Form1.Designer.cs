@@ -43,6 +43,8 @@
             this.txtReponstData = new System.Windows.Forms.TextBox();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.cbUserAgent = new System.Windows.Forms.ComboBox();
+            this.txtFile = new System.Windows.Forms.TextBox();
+            this.btnSltFile = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -148,10 +150,12 @@
             // 
             // groupBox5
             // 
+            this.groupBox5.Controls.Add(this.btnSltFile);
+            this.groupBox5.Controls.Add(this.txtFile);
             this.groupBox5.Controls.Add(this.txtRequestData);
             this.groupBox5.Location = new System.Drawing.Point(13, 118);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(726, 100);
+            this.groupBox5.Size = new System.Drawing.Size(726, 142);
             this.groupBox5.TabIndex = 5;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "请求数据";
@@ -168,20 +172,20 @@
             // groupBox6
             // 
             this.groupBox6.Controls.Add(this.txtReponstData);
-            this.groupBox6.Location = new System.Drawing.Point(12, 225);
+            this.groupBox6.Location = new System.Drawing.Point(12, 266);
             this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(727, 217);
+            this.groupBox6.Size = new System.Drawing.Size(727, 176);
             this.groupBox6.TabIndex = 6;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "返回数据";
             // 
             // txtReponstData
             // 
-            this.txtReponstData.Location = new System.Drawing.Point(8, 21);
+            this.txtReponstData.Location = new System.Drawing.Point(8, 20);
             this.txtReponstData.Multiline = true;
             this.txtReponstData.Name = "txtReponstData";
             this.txtReponstData.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtReponstData.Size = new System.Drawing.Size(713, 179);
+            this.txtReponstData.Size = new System.Drawing.Size(713, 150);
             this.txtReponstData.TabIndex = 0;
             // 
             // groupBox7
@@ -205,6 +209,25 @@
             this.cbUserAgent.Name = "cbUserAgent";
             this.cbUserAgent.Size = new System.Drawing.Size(154, 20);
             this.cbUserAgent.TabIndex = 0;
+            // 
+            // txtFile
+            // 
+            this.txtFile.Location = new System.Drawing.Point(7, 101);
+            this.txtFile.Multiline = true;
+            this.txtFile.Name = "txtFile";
+            this.txtFile.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.txtFile.Size = new System.Drawing.Size(639, 35);
+            this.txtFile.TabIndex = 1;
+            // 
+            // btnSltFile
+            // 
+            this.btnSltFile.Location = new System.Drawing.Point(652, 100);
+            this.btnSltFile.Name = "btnSltFile";
+            this.btnSltFile.Size = new System.Drawing.Size(68, 36);
+            this.btnSltFile.TabIndex = 2;
+            this.btnSltFile.Text = "浏览";
+            this.btnSltFile.UseVisualStyleBackColor = true;
+            this.btnSltFile.Click += new System.EventHandler(this.btnSltFile_Click);
             // 
             // Form1
             // 
@@ -253,6 +276,8 @@
         private System.Windows.Forms.ComboBox cbCharset;
         private System.Windows.Forms.GroupBox groupBox7;
         private System.Windows.Forms.ComboBox cbUserAgent;
+        private System.Windows.Forms.Button btnSltFile;
+        private System.Windows.Forms.TextBox txtFile;
     }
 }
 
