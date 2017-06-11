@@ -1,5 +1,7 @@
 ﻿using System;
+using System.IO;
 using System.Linq;
+using System.Text;
 using System.Windows.Forms;
 using RPoney.HttpTools.Model;
 
@@ -12,10 +14,12 @@ namespace RPoney.HttpTools
             InitializeComponent();
         }
 
+        private readonly Lazy<HttpService> _httpService = new Lazy<HttpService>();
         private void btnSubmit_Click(object sender, EventArgs e)
         {
             try
             {
+                var refContentType = string.Empty;
                 var requestModel = new RequestHeaderModel()
                 {
                     Url = txtRequestUrl.Text,
@@ -25,28 +29,35 @@ namespace RPoney.HttpTools
                     Param = txtRequestData.Text,
                     ContentType = cbContentType.Text
                 };
-                txtReponstData.Text = new HttpService().GetResult(requestModel);
-                //var requestUrl = txtRequestUrl.Text;
-                //var reqeustMethod = cbRequestMethod.Text;
-                //var encoding = Encoding.GetEncoding(cbCharset.Text);
-                //switch (reqeustMethod.ToLower())
-                //{
-                //    case "get":
-                //        txtReponstData.Text = RequestHelper.HttpGet(requestUrl, null, encoding);
-                //        break;
-                //    case "post":
-                //        var contentType = cbContentType.Text;
-                //        var requestData = txtRequestData.Text;
-                //        var stream = new MemoryStream();
-                //        var formDataBytes = string.IsNullOrWhiteSpace(requestData) ? new byte[0] : encoding.GetBytes(requestData);
-                //        stream.Write(formDataBytes, 0, formDataBytes.Length);
-                //        stream.Seek(0, SeekOrigin.Begin);
-                //        txtReponstData.Text = RequestHelper.HttpPost(requestUrl, contentType, null, stream, null, null, encoding);
-                //        break;
-                //    default:
-                //        txtRequestData.Text = txtReponstData.Text = string.Empty;
-                //        break;
-                //}
+                if (!string.IsNullOrWhiteSpace(txtFile.Text))
+                {
+                    using (var sr = new StringReader(txtFile.Text))
+                    {
+                        string filename;
+                        var fileUrl = new StringBuilder();
+                        while ((filename = sr.ReadLine()) != null)
+                        {
+                            requestModel.FileStream = GetFileStream(filename, ref refContentType);
+                            if (!string.IsNullOrWhiteSpace(refContentType))
+                            {
+                                requestModel.ContentType = refContentType;
+                            }
+                            try
+                            {
+                                fileUrl.AppendLine($"{filename}:{_httpService.Value.GetResult(requestModel)}");
+                            }
+                            catch (Exception ex)
+                            {
+                                fileUrl.AppendLine($"{filename}上传失败:{ex.Message}");
+                            }
+                        }
+                        txtReponstData.Text = fileUrl.ToString();
+                    }
+                }
+                else
+                {
+                    txtReponstData.Text = _httpService.Value.GetResult(requestModel);
+                }
             }
             catch (Exception ex)
             {
@@ -73,6 +84,33 @@ namespace RPoney.HttpTools
             {
                 txtFile.Text += file + Environment.NewLine;
             }
+        }
+
+        private Stream GetFileStream(string fileName, ref string contentType)
+        {
+            if (string.IsNullOrWhiteSpace(fileName)) return null;
+            var postStream = new MemoryStream();
+            using (var fileStream = new FileStream(fileName, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
+            {
+                var boundary = DateTime.Now.Ticks.ToString("x");
+                var itemBoundaryBytes = Encoding.GetEncoding(cbCharset.Text).GetBytes("\r\n--" + boundary + "\r\n");
+                var endBoundaryBytes = Encoding.GetEncoding(cbCharset.Text).GetBytes("\r\n--" + boundary + "--\r\n");
+                //请求头部信息
+                var sbHeader =
+                    $"Content-Disposition:form-data;name=\"media\";filename=\"{Path.GetFileName(fileName)}\"\r\nContent-Type:application/octet-stream\r\n\r\n";
+                var postHeaderBytes = Encoding.GetEncoding(cbCharset.Text).GetBytes(sbHeader);
+                postStream.Write(itemBoundaryBytes, 0, itemBoundaryBytes.Length);
+                postStream.Write(postHeaderBytes, 0, postHeaderBytes.Length);
+                var buffer = new byte[1024];
+                var bytesRead = 0;
+                while ((bytesRead = fileStream.Read(buffer, 0, buffer.Length)) != 0)
+                {
+                    postStream.Write(buffer, 0, bytesRead);
+                }
+                postStream.Write(endBoundaryBytes, 0, endBoundaryBytes.Length);
+                contentType = $"multipart/form-data; boundary={boundary}";
+            }
+            return postStream;
         }
     }
 }

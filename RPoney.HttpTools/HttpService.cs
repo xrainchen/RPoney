@@ -14,7 +14,7 @@ namespace RPoney.HttpTools
                 case "get":
                     return HttpHelper.Get(model.Url, Encoding.GetEncoding(model.Charset), GetUserAgent(model.UserAgent));
                 case "post":
-                    return HttpHelper.Post(model.Url, Encoding.GetEncoding(model.Charset), GetUserAgent(model.UserAgent), model.Param, model.ContentType);
+                    return HttpHelper.Post(model.Url, Encoding.GetEncoding(model.Charset), GetUserAgent(model.UserAgent), model.Param, model.ContentType,model.FileStream);
                 default:
                     return string.Empty;
             }
@@ -51,8 +51,7 @@ namespace RPoney.HttpTools
         /// <param name="password"></param>
         public static void SetHttpProxy(string host, string port, string username, string password)
         {
-            ICredentials cred;
-            cred = new NetworkCredential(username, password);
+            var cred = new NetworkCredential(username, password);
             if (!string.IsNullOrEmpty(host))
             {
                 _webproxy = new WebProxy(host + ":" + port ?? "80", true, null, cred);
@@ -68,7 +67,7 @@ namespace RPoney.HttpTools
         }
 
         #endregion
-        private static int _timeOut = 10000;
+        private static readonly int _timeOut = 10000;
         private const string MethodGet = "GET";
         private const string MethodPost = "POST";
         private const string RequestAccept = "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8";
@@ -89,7 +88,25 @@ namespace RPoney.HttpTools
             }
         }
 
-        public static string Post(string url, Encoding encoding, string userAgent, string requestData, string contentType)
+        public static string Post(string url, Encoding encoding, string userAgent, string requestData, string contentType,Stream fileStream)
+        {
+            var stream = new MemoryStream();
+            var postDataBytes = string.IsNullOrWhiteSpace(requestData) ? new byte[0] : encoding.GetBytes(requestData);
+            stream.Write(postDataBytes, 0, postDataBytes.Length);
+            if (null != fileStream)
+            {
+                //写入文件
+                var buffer = new byte[1024];
+                var bytesRead = 0;
+                fileStream.Position = 0;
+                while ((bytesRead = fileStream.Read(buffer, 0, buffer.Length)) != 0)
+                {
+                    stream.Write(buffer, 0, bytesRead);
+                }
+            }
+            return Post(url, encoding, userAgent, stream, contentType);
+        }
+        public static string Post(string url, Encoding encoding, string userAgent, Stream stream, string contentType)
         {
             var request = (HttpWebRequest)WebRequest.Create(url);
             request.Method = MethodPost;
@@ -97,10 +114,6 @@ namespace RPoney.HttpTools
             request.Proxy = _webproxy;
             request.UserAgent = userAgent;
             request.ContentType = contentType;
-            var stream = new MemoryStream();
-            var postDataBytes = string.IsNullOrWhiteSpace(requestData) ? new byte[0] : encoding.GetBytes(requestData);
-            stream.Write(postDataBytes, 0, postDataBytes.Length);
-            stream.Seek(0, SeekOrigin.Begin);
             request.ContentLength = stream.Length;
             request.Accept = RequestAccept;
             request.KeepAlive = true;
@@ -109,7 +122,7 @@ namespace RPoney.HttpTools
                 stream.Position = 0;
                 //直接写入流
                 var requestStream = request.GetRequestStream();
-                var buffer = new byte[1024];
+                var buffer = new byte[1024];//1kb
                 var bytesRead = 0;
                 while ((bytesRead = stream.Read(buffer, 0, buffer.Length)) != 0)
                 {

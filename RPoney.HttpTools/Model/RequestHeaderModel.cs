@@ -1,4 +1,6 @@
-﻿namespace RPoney.HttpTools.Model
+﻿using System.IO;
+
+namespace RPoney.HttpTools.Model
 {
     public class RequestHeaderModel
     {
@@ -13,5 +15,7 @@
         public string UserAgent { get; set; }
 
         public string Param { get; set; }
+
+        public Stream FileStream { get; set; }
     }
 }
