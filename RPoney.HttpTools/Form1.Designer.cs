@@ -38,13 +38,13 @@
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.cbCharset = new System.Windows.Forms.ComboBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.btnSltFile = new System.Windows.Forms.Button();
+            this.txtFile = new System.Windows.Forms.TextBox();
             this.txtRequestData = new System.Windows.Forms.TextBox();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.txtReponstData = new System.Windows.Forms.TextBox();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.cbUserAgent = new System.Windows.Forms.ComboBox();
-            this.txtFile = new System.Windows.Forms.TextBox();
-            this.btnSltFile = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -160,6 +160,25 @@
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "请求数据";
             // 
+            // btnSltFile
+            // 
+            this.btnSltFile.Location = new System.Drawing.Point(652, 100);
+            this.btnSltFile.Name = "btnSltFile";
+            this.btnSltFile.Size = new System.Drawing.Size(68, 36);
+            this.btnSltFile.TabIndex = 2;
+            this.btnSltFile.Text = "浏览";
+            this.btnSltFile.UseVisualStyleBackColor = true;
+            this.btnSltFile.Click += new System.EventHandler(this.btnSltFile_Click);
+            // 
+            // txtFile
+            // 
+            this.txtFile.Location = new System.Drawing.Point(7, 101);
+            this.txtFile.Multiline = true;
+            this.txtFile.Name = "txtFile";
+            this.txtFile.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.txtFile.Size = new System.Drawing.Size(639, 35);
+            this.txtFile.TabIndex = 1;
+            // 
             // txtRequestData
             // 
             this.txtRequestData.Location = new System.Drawing.Point(7, 21);
@@ -187,6 +206,7 @@
             this.txtReponstData.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.txtReponstData.Size = new System.Drawing.Size(713, 150);
             this.txtReponstData.TabIndex = 0;
+            this.txtReponstData.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtReponstData_KeyDown);
             // 
             // groupBox7
             // 
@@ -209,25 +229,6 @@
             this.cbUserAgent.Name = "cbUserAgent";
             this.cbUserAgent.Size = new System.Drawing.Size(154, 20);
             this.cbUserAgent.TabIndex = 0;
-            // 
-            // txtFile
-            // 
-            this.txtFile.Location = new System.Drawing.Point(7, 101);
-            this.txtFile.Multiline = true;
-            this.txtFile.Name = "txtFile";
-            this.txtFile.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtFile.Size = new System.Drawing.Size(639, 35);
-            this.txtFile.TabIndex = 1;
-            // 
-            // btnSltFile
-            // 
-            this.btnSltFile.Location = new System.Drawing.Point(652, 100);
-            this.btnSltFile.Name = "btnSltFile";
-            this.btnSltFile.Size = new System.Drawing.Size(68, 36);
-            this.btnSltFile.TabIndex = 2;
-            this.btnSltFile.Text = "浏览";
-            this.btnSltFile.UseVisualStyleBackColor = true;
-            this.btnSltFile.Click += new System.EventHandler(this.btnSltFile_Click);
             // 
             // Form1
             // 

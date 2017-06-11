@@ -112,5 +112,13 @@ namespace RPoney.HttpTools
             }
             return postStream;
         }
+
+        private void txtReponstData_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Modifiers == Keys.Control && e.KeyCode == Keys.A)
+            {
+                ((TextBox)sender).SelectAll();
+            }
+        }
     }
 }
