@@ -96,8 +96,7 @@ namespace RPoney.HttpTools
                 var itemBoundaryBytes = Encoding.GetEncoding(cbCharset.Text).GetBytes("\r\n--" + boundary + "\r\n");
                 var endBoundaryBytes = Encoding.GetEncoding(cbCharset.Text).GetBytes("\r\n--" + boundary + "--\r\n");
                 //请求头部信息
-                var sbHeader =
-                    $"Content-Disposition:form-data;name=\"media\";filename=\"{Path.GetFileName(fileName)}\"\r\nContent-Type:application/octet-stream\r\n\r\n";
+                var sbHeader =$"Content-Disposition:form-data;name=\"media\";filename=\"{Path.GetFileName(fileName)}\"\r\nContent-Type:application/octet-stream\r\n\r\n";
                 var postHeaderBytes = Encoding.GetEncoding(cbCharset.Text).GetBytes(sbHeader);
                 postStream.Write(itemBoundaryBytes, 0, itemBoundaryBytes.Length);
                 postStream.Write(postHeaderBytes, 0, postHeaderBytes.Length);

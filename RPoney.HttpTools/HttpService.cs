@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Net;
 using System.Text;
 using RPoney.HttpTools.Model;
@@ -14,7 +15,7 @@ namespace RPoney.HttpTools
                 case "get":
                     return HttpHelper.Get(model.Url, Encoding.GetEncoding(model.Charset), GetUserAgent(model.UserAgent));
                 case "post":
-                    return HttpHelper.Post(model.Url, Encoding.GetEncoding(model.Charset), GetUserAgent(model.UserAgent), model.Param, model.ContentType,model.FileStream);
+                    return HttpHelper.Post(model.Url, Encoding.GetEncoding(model.Charset), GetUserAgent(model.UserAgent), model.Param, model.ContentType, model.FileStream);
                 default:
                     return string.Empty;
             }
@@ -88,7 +89,7 @@ namespace RPoney.HttpTools
             }
         }
 
-        public static string Post(string url, Encoding encoding, string userAgent, string requestData, string contentType,Stream fileStream)
+        public static string Post(string url, Encoding encoding, string userAgent, string requestData, string contentType, Stream fileStream)
         {
             var stream = new MemoryStream();
             var postDataBytes = string.IsNullOrWhiteSpace(requestData) ? new byte[0] : encoding.GetBytes(requestData);
@@ -139,6 +140,37 @@ namespace RPoney.HttpTools
                     return retString;
                 }
             }
+        }
+
+        /// <summary>
+        /// 获取文件上传流
+        /// </summary>
+        /// <param name="fileStream"></param>
+        /// <param name="chartSet"></param>
+        /// <param name="fileName"></param>
+        /// <param name="contentType"></param>
+        /// <returns></returns>
+        public static Stream GetUploadFileStream(Stream fileStream, string chartSet, string fileName, ref string contentType)
+        {
+            if (contentType == null) throw new ArgumentNullException(nameof(contentType));
+            var postStream = new MemoryStream();
+            var boundary = DateTime.Now.Ticks.ToString("x");
+            var itemBoundaryBytes = Encoding.GetEncoding(chartSet).GetBytes("\r\n--" + boundary + "\r\n");
+            var endBoundaryBytes = Encoding.GetEncoding(chartSet).GetBytes("\r\n--" + boundary + "--\r\n");
+            //请求头部信息
+            var sbHeader = $"Content-Disposition:form-data;name=\"media\";filename=\"{Path.GetFileName(fileName)}\"\r\nContent-Type:application/octet-stream\r\n\r\n";
+            var postHeaderBytes = Encoding.GetEncoding(chartSet).GetBytes(sbHeader);
+            postStream.Write(itemBoundaryBytes, 0, itemBoundaryBytes.Length);
+            postStream.Write(postHeaderBytes, 0, postHeaderBytes.Length);
+            var buffer = new byte[1024];
+            var bytesRead = 0;
+            while ((bytesRead = fileStream.Read(buffer, 0, buffer.Length)) != 0)
+            {
+                postStream.Write(buffer, 0, bytesRead);
+            }
+            postStream.Write(endBoundaryBytes, 0, endBoundaryBytes.Length);
+            contentType = $"multipart/form-data; boundary={boundary}";
+            return postStream;
         }
     }
 }

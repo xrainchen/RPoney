@@ -362,7 +362,9 @@ namespace RPoney
         public static string SerializeToJSON(this object obj)
         {
             var serializer = new JavaScriptSerializer();
-            return serializer.Serialize(obj);
+            serializer.MaxJsonLength = int.MaxValue;
+            object obj1 = obj;
+            return serializer.Serialize(obj1);
         }
 
         public static string SerializeToString(this object input)

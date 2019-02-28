@@ -12,6 +12,7 @@ namespace RPoney
         public static T DeserializeFromJSON<T>(this string jsonString)
         {
             JavaScriptSerializer serializer = new JavaScriptSerializer();
+            serializer.MaxJsonLength=Int32.MaxValue;
             return serializer.Deserialize<T>(jsonString);
         }
 
@@ -31,6 +32,7 @@ namespace RPoney
         public static object DeserializeObjectFromJSON(this string jsonString)
         {
             JavaScriptSerializer serializer = new JavaScriptSerializer();
+            serializer.MaxJsonLength = Int32.MaxValue;
             return serializer.DeserializeObject(jsonString);
         }
 

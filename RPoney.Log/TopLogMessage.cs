@@ -35,7 +35,7 @@ namespace RPoney.Log
 
         public override string ToString()
         {
-            return this.SerializeToJSON();
+            return $@"BizType:{BizType}{Environment.NewLine}Description:{Description}{Environment.NewLine}{(string.IsNullOrWhiteSpace(ClassName) ?"":$"ClassName:{ClassName}{Environment.NewLine}")}{(string.IsNullOrWhiteSpace(EventNo) ? "" : $"EventNo:{EventNo}{Environment.NewLine}")}{(TopContext==null ? "" : $"TopContext:{TopContext.SerializeToJSON()}{Environment.NewLine}")}";
         }
     }
 

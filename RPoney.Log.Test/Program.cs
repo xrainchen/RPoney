@@ -6,7 +6,12 @@ namespace RPoney.Log.Test
     {
         static void Main(string[] args)
         {
-            RPoney.Log.LoggerManager.Debug("Program", "Debug1");
+            var model = new
+            {
+                Id=1,
+                Name="test"
+            };
+            RPoney.Log.LoggerManager.Debug("Program", $"Debug1{model.SerializeToJSON()}");
             RPoney.Log.LoggerManager.Info("Program", "Info1");
             RPoney.Log.LoggerManager.Warn("Program", "Warn1");
             try
